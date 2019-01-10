@@ -6,7 +6,7 @@ el archivo Enemigo.js para entender que es cada uno. */
 var ZombieCaminante = function(sprite, x, y, ancho, alto, velocidad, rangoMov) {
   /* ZombieCaminante llama al constructor de Enemigo utilizando los parametros
   necesarios */
-  Enemigo.call(this, sprite, x, y, ancho, alto, velocidad, rangoMov);
+  Enemigo.call(this, sprite, x, y, ancho, alto, velocidad, rangoMov, '');
 }
 /* Completamos la creacion del objeto asignando su prototipo y la funcion
 constructor para poder usarla con 'new' al crear nuevos Zombies Caminantes */

@@ -56,13 +56,13 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    /*new Obstaculo('imagenes/tren_horizontal.png', 20, 325, 90, 30, 10,'h'),
+    new ZombieConductor('imagenes/tren_horizontal.png', 20, 325, 90, 30, 1.7, 'h'),
 
-    new Obstaculo('imagenes/tren_vertical.png', 643, 20, 30, 90, 1,'v'),
-    new Obstaculo('imagenes/tren_vertical.png', 674, 20, 30, 90, 1,'v'),*/
+    new ZombieConductor('imagenes/tren_vertical.png', 643, 20, 30, 90, 2, 'v'),
+    new ZombieConductor('imagenes/tren_vertical.png', 674, 20, 30, 90, 3, 'v'),
 
-    new ZombieCaminante('imagenes/zombie1.png', 450, 470, 8, 8, 0.3, {desdeX: 350, hastaX: 550, desdeY: 370, hastaY: 570}),
-    new ZombieCaminante('imagenes/zombie1.png', 70, 300, 8, 8, 0.3, {desdeX: 70, hastaX: 170, desdeY: 300, hastaY: 420})
+    new ZombieCaminante('imagenes/zombie1.png', 450, 500, 8, 8, 0.3, {desdeX: 350, hastaX: 550, desdeY: 470, hastaY: 500}),
+    new ZombieCaminante('imagenes/zombie1.png', 70, 350, 8, 8, 0.3, {desdeX: 70, hastaX: 170, desdeY: 350, hastaY: 410})
   ]
 
 }
@@ -245,8 +245,7 @@ Juego.chequearColisiones = function(x, y) {
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
 
-      this.jugador.vidas -= obstaculo.potencia;
-      obstaculo.potencia -= 0;
+      obstaculo.chocar(this.jugador);
 
       puedeMoverse = false;
     }
