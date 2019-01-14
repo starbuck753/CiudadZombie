@@ -28,7 +28,6 @@ var Juego = {
     
     new Obstaculo('imagenes/valla_vertical.png', 400, 390, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 400, 420, 30, 30, 1),
-    new Obstaculo('imagenes/valla_vertical.png', 460, 80, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 280, 470, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 360, 240, 30, 30, 1),
     
@@ -62,7 +61,10 @@ var Juego = {
     new ZombieConductor('imagenes/tren_vertical.png', 674, 20, 30, 90, 3, 'v'),
 
     new ZombieCaminante('imagenes/zombie1.png', 450, 500, 8, 8, 0.3, {desdeX: 350, hastaX: 550, desdeY: 470, hastaY: 500}),
-    new ZombieCaminante('imagenes/zombie1.png', 70, 350, 8, 8, 0.3, {desdeX: 70, hastaX: 170, desdeY: 350, hastaY: 410})
+    new ZombieCaminante('imagenes/zombie1.png', 70, 350, 8, 8, 0.3, {desdeX: 70, hastaX: 170, desdeY: 350, hastaY: 410}),
+    new ZombieCaminante('imagenes/zombie1.png', 520, 220, 8, 8, 0.3, {desdeX: 500, hastaX: 570, desdeY: 190, hastaY: 260}),
+    new ZombieCaminante('imagenes/zombie1.png', 840, 120, 8, 8, 0.3, {desdeX: 820, hastaX: 870, desdeY: 70, hastaY: 160}),
+    new ZombieCaminante('imagenes/zombie1.png', 350, 100, 8, 8, 0.3, {desdeX: 300, hastaX: 400, desdeY: 50, hastaY: 150})
   ]
 
 }
@@ -182,6 +184,7 @@ Juego.dibujar = function() {
   //Se pinta la imagen de fondo segun el estado del juego
   this.dibujarFondo();
 
+  Dibujante.dibujarRectangulo('red', 759, 515, 128, 20);
 
   /* Aca hay que agregar la logica para poder dibujar al jugador principal
   utilizando al dibujante y los metodos que nos brinda.
@@ -227,11 +230,11 @@ se ven las colisiones con los obstaculos. En este caso sera con los zombies. */
 Juego.calcularAtaques = function() {
   this.enemigos.forEach(function(enemigo) {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
-      /* Si el enemigo colisiona debe empezar su ataque
-      COMPLETAR */
+      // Si el enemigo colisiona debe empezar su ataque
+      enemigo.comenzarAtaque(this.jugador);
     } else {
-      /* Sino, debe dejar de atacar
-      COMPLETAR */
+      // Sino, debe dejar de atacar
+      enemigo.dejarDeAtacar();
     }
   }, this);
 };
